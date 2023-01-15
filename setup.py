@@ -31,7 +31,7 @@ setup(
     description="Python utilities to manage the Kosmos cluster",
     entry_points={
         'console_scripts': [
-            'kosmos_utilities=kosmos_utilities.cli:main',
+            'create-project=kosmos.cli:main',
         ],
     },
     install_requires=requirements,
