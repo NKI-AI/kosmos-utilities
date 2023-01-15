@@ -1,7 +1,8 @@
 """Console script for kosmos_utilities."""
 import argparse
 import sys
-
+from fabric import Connection, Config
+import getpass
 
 def main():
     """Console script for kosmos_utilities."""
@@ -16,7 +17,7 @@ def main():
 
     args = parser.parse_args()
 
-    commands = ["sudo su"]
+    commands = []
 
     if not args.project:
         args.project = input("Project name: ")
@@ -49,8 +50,16 @@ def main():
 
     commands.append(f"zfs set quota={args.quota} /project-pool/project/{args.project}")
 
-    print("Run this command to create the project: ")
+    # sudo_pass = getpass.getpass("Password for sudo on teuwen-ansible: ")
+    # config = Config(overrides={'sudo': {'password': sudo_pass}})
+    #
+    # c = Connection(
+    #     host="teuwen-ansible",
+    #     config=config,
+    # )
     print(" && ".join(commands))
+    
+    # c.run(" && ".join(commands), echo=True)
 
     return 0
 
